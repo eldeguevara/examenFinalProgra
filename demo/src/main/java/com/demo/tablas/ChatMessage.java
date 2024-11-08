@@ -15,10 +15,37 @@ public class ChatMessage {
     @ManyToOne
     private  Usuarios usuarios;
 
-    public ChatMessage(String messageContent, String timestamp, Usuarios usuarios) {
+    @ManyToOne
+    private MessageTopic topic;
+
+    @ManyToOne
+    @JoinColumn(name = "bot_command_id")
+    private BotCommand botCommand;
+
+    public ChatMessage(){}
+
+    public ChatMessage(String messageContent, String timestamp, Usuarios usuarios, MessageTopic topic) {
         this.messageContent = messageContent;
         this.timestamp = timestamp;
         this.usuarios = usuarios;
+        this.topic = topic;
+    }
+
+
+    public BotCommand getBotCommand() {
+        return botCommand;
+    }
+
+    public void setBotCommand(BotCommand botCommand) {
+        this.botCommand = botCommand;
+    }
+
+    public MessageTopic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(MessageTopic topic) {
+        this.topic = topic;
     }
 
     public Long getId() {
