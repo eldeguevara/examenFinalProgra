@@ -22,6 +22,11 @@ public class Usuarios {
     @OneToMany(mappedBy = "usuarios", fetch = FetchType.LAZY)
     private List<ChatMessage> chatMessages;
 
+    @ManyToOne
+    @JoinColumn(name = "conversation_id")
+    private Conversation conversation;
+
+
     public Usuarios(){}
 
     public Usuarios(String name, String username, String chatId) {
@@ -29,6 +34,14 @@ public class Usuarios {
         this.name = name;
         this.username = username;
         this.chatId = chatId;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     public UserPreference getUserPreference() {

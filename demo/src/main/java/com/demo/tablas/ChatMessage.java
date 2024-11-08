@@ -22,6 +22,10 @@ public class ChatMessage {
     @JoinColumn(name = "bot_command_id")
     private BotCommand botCommand;
 
+    @ManyToOne
+    @JoinColumn(name = "conversation_id")
+    private Conversation conversation;
+
     public ChatMessage(){}
 
     public ChatMessage(String messageContent, String timestamp, Usuarios usuarios, MessageTopic topic) {
